@@ -24,7 +24,7 @@ const Content = styled.main`
   min-height: 100vh;
   padding: 1.2rem 1rem;
   ${(props) =>
-    props.compacted ? 'padding: 34px 0rem;' : 'padding: 4.65rem 0;'}
+    props.compacted ? 'margin-top:42px; padding: 0 0 0 0;' : 'margin-top:42px; padding: 2.4rem 0 0 0;'}
   transition: padding .2s;
   @media screen and (max-width: 650px) {
     margin-top: 0.5rem;

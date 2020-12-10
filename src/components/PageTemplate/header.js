@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import PositionStore from 'hooks/positionStore';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
+import LogoImage from '../../resources/images/hiStreamer384.png';
+
 export default function Header() {
   const [isMenuCompacted, setMenuCompacted] = React.useState(false);
 
@@ -23,7 +25,8 @@ export default function Header() {
         
           <LogoLink to="/">
             <span>
-              <h1>HiStreamer</h1>.com
+              <img src={LogoImage} alt="logo"/>
+              <h1>Streamer</h1>.com
             </span>
           </LogoLink>
 
@@ -107,6 +110,15 @@ const LogoLink = styled(Link)`
   }
   @media screen and (max-width: 650px) {
     margin-top: 0.5rem;
+  }
+  img {
+    height: 2rem;
+    padding-right: .2rem;
+  }
+  span {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
   }
 `;
 const MenuListContainer = styled.div`
