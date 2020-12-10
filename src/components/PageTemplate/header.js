@@ -152,6 +152,7 @@ const MenuListContainer = styled.div`
       transition: color 0.15s;
       &:hover {
         color: rgba(0, 0, 0, 0.9);
+        transform: scale(1.1);
       }
       @media screen and (max-width: 650px) {
         margin-top: 0.6rem;
