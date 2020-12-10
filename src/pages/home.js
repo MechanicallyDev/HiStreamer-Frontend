@@ -1,9 +1,11 @@
 import PageTemplate from 'layouts/PageTemplate'
 
-export default function Home(){
+const Home = () => {
     return (
         <PageTemplate title="Home">
             <h2>Home</h2>
         </PageTemplate>
     )
 }
+
+export default Home

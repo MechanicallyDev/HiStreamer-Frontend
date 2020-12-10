@@ -20,7 +20,9 @@ export default function ContentContainer({children}) {
 }
 
 const Content = styled.main`
-  flex: 1;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
   padding: 1.2rem 1rem;
   ${(props) =>
