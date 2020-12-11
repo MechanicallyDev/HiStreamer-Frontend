@@ -17,6 +17,7 @@ const GuideList = () => {
           author="MechanicallyDev"
           summary="O preguiçoso, conforme o senso comum, é aquele indivíduo avesso a atividades que mobilizem esforço físico ou mental, de modo que lhe é conveniente direcionar a sua vida a fins que não envolvam maiores esforços.
           A preguiça é algo que pode ser combatido e pode ter motivações psicológicas e fisiológicas. Também existem relações da preguiça com a depressão."
+          slug="teste"
         />
         <GuideItem
           image="https://img.r7.com/images/bicho-preguica-caracteristicas-das-especies-e-curiosidades-07042020125814530?dimensions=660x360"
@@ -25,6 +26,7 @@ const GuideList = () => {
           author="MechanicallyDev"
           summary="O preguiçoso, conforme o senso comum, é aquele indivíduo avesso a atividades que mobilizem esforço físico ou mental, de modo que lhe é conveniente direcionar a sua vida a fins que não envolvam maiores esforços.
           A preguiça é algo que pode ser combatido e pode ter motivações psicológicas e fisiológicas. Também existem relações da preguiça com a depressão."
+          slug="teste"
         />
         <GuideItem
           image="https://img.r7.com/images/bicho-preguica-caracteristicas-das-especies-e-curiosidades-07042020125814530?dimensions=660x360"
@@ -33,6 +35,7 @@ const GuideList = () => {
           author="MechanicallyDev"
           summary="O preguiçoso, conforme o senso comum, é aquele indivíduo avesso a atividades que mobilizem esforço físico ou mental, de modo que lhe é conveniente direcionar a sua vida a fins que não envolvam maiores esforços.
           A preguiça é algo que pode ser combatido e pode ter motivações psicológicas e fisiológicas. Também existem relações da preguiça com a depressão."
+          slug="teste"
         />
       </GuideListContainer>
     </PageTemplate>
