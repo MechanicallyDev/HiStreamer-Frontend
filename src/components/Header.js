@@ -1,8 +1,24 @@
 import styled from 'styled-components';
 
-const Header = ({ title, description = [], hero = false, color = '#555', backgroundColor="white", backgroundImage="", minHeight }) => {
+const Header = (props) => {
+  const {
+    title,
+    description = [],
+    hero = false,
+    color = '#555',
+    backgroundColor = 'white',
+    backgroundImage = '',
+    minHeight,
+  } = props;
+
   return (
-    <BlockHeading hero={hero} color={color} backgroundColor={backgroundColor}  backgroundImage={backgroundImage} minHeight={minHeight}>
+    <BlockHeading
+      hero={hero}
+      color={color}
+      backgroundColor={backgroundColor}
+      backgroundImage={backgroundImage}
+      minHeight={minHeight}
+    >
       {title && <h2>{title}</h2>}
       {description.map((description) => (
         <p>{description}</p>
@@ -26,7 +42,7 @@ const BlockHeading = styled.div`
   background-position: center center;
   background-size: cover;
   background-blend-mode: multiply;
-  ${({hero, backgroundColor, backgroundImage, color, minHeight}) => {
+  ${({ hero, backgroundColor, backgroundImage, color, minHeight }) => {
     if (hero) {
       return `
         ${minHeight && `min-height: ${minHeight};`}
