@@ -1,20 +1,17 @@
 import PageTemplate from 'layouts/PageTemplate';
 import styled from 'styled-components';
+import Header from 'components/Header';
 
 const Contact = () => {
   return (
     <PageTemplate title="Contact">
-      <BlockHeading>
-        <h2>Contact Us</h2>
-        <p>
-          Do you want a new feature? Maybe you want to tell us about some bug...
-        </p>
-        <p>
-          Or maybe there is some accessibility issue? Anyway, contact us using
-          the form bellow.
-        </p>
-      </BlockHeading>
-
+      <Header
+        title="Contact Us"
+        description= {[
+          "Do you want a new feature? Maybe you want to tell us about some bug...",
+          "Or maybe there is some accessibility issue? Anyway, contact us using the form bellow."
+        ]}
+      />
       <Form>
         <div>
           <label>

@@ -1,14 +1,17 @@
 import PageTemplate from 'layouts/PageTemplate';
 import styled from 'styled-components';
+import Header from 'components/Header';
 import GuideItem from 'components/Guides/GuideItem';
 
 const GuideList = () => {
   return (
     <PageTemplate title="Guides">
-      <BlockHeading>
-        <h2>Guides</h2>
-        <p>Check our guides and learn how to make your stream even better!</p>
-      </BlockHeading>
+      <Header
+        title="Guides"
+        description={[
+          "Check our guides and learn how to make your stream even better!"
+        ]}
+      />
       <GuideListContainer>
         <GuideItem
           image="https://img.r7.com/images/bicho-preguica-caracteristicas-das-especies-e-curiosidades-07042020125814530?dimensions=660x360"
@@ -44,24 +47,6 @@ const GuideList = () => {
 
 export default GuideList;
 
-const BlockHeading = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 1200px;
-  height: 30vh;
-  h2 {
-    font-size: 2rem;
-    padding: 10px;
-    color: #333;
-  }
-  p {
-    font-size: 1rem;
-    padding: 10px;
-  }
-`;
 const GuideListContainer = styled.main`
   width: 100%;
   max-width: 1200px;

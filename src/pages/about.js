@@ -1,11 +1,12 @@
-import PageTemplate from 'layouts/PageTemplate'
+import PageTemplate from 'layouts/PageTemplate';
+import Header from 'components/Header';
 
 const About = () => {
-    return (
-        <PageTemplate title="About">
-            <h2>About</h2>
-        </PageTemplate>
-    )
-}
+  return (
+    <PageTemplate title="About">
+      <Header title="About" />
+    </PageTemplate>
+  );
+};
 
-export default About
+export default About;
