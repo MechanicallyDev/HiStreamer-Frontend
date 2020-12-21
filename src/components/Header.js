@@ -21,7 +21,7 @@ const Header = (props) => {
     >
       {title && <h2>{title}</h2>}
       {description.map((description) => (
-        <p>{description}</p>
+        <p key={description}>{description}</p>
       ))}
     </BlockHeading>
   );

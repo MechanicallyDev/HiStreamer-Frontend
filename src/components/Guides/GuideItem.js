@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+function formatDate(date) {
+  const datearray = date.substring(0, 10).split('-');
+  return `${datearray[1]}/${datearray[2]}/${datearray[0]}`;
+}
+
 export default function GuideItemInfo({
   image,
   title,
@@ -18,7 +23,7 @@ export default function GuideItemInfo({
         <header>
           <h3>{title}</h3>
           <span>
-            Sent by {author} in {date}
+            Sent by {author} in {formatDate(date)}
           </span>
           <p>{summary}</p>
         </header>
@@ -30,9 +35,10 @@ export default function GuideItemInfo({
 const GuideItem = styled.article`
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   padding: 2rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.075);
   div {
     display: flex;
     flex-direction: column;
@@ -40,8 +46,8 @@ const GuideItem = styled.article`
     padding: 0.5rem 1rem;
     img {
       border-radius: 0.5rem;
-      max-width: 100%;
-      height: 100%;
+      width: 100%;
+      max-height: auto;
       vertical-align: middle;
       border-style: none;
       object-fit: cover;
@@ -52,7 +58,7 @@ const GuideItem = styled.article`
       margin-bottom: 1rem;
     }
     span {
-      font-size: .9rem;
+      font-size: 0.9rem;
       color: #555;
     }
     p {
@@ -84,6 +90,7 @@ const GuideItem = styled.article`
     }
   }
   @media screen and (max-width: 1000px) {
+    display: flex;
     flex-direction: column;
     div {
       p {
