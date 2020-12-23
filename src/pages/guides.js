@@ -7,7 +7,6 @@ import Header from 'components/Header';
 import GuideItem from 'components/Guides/GuideItem';
 
 const GuideList = (props) => {
-  const [postCount, setPostCount] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(0);
   const [pageCount, setPageCount] = React.useState(1);
   const [posts, setPosts] = React.useState([]);
@@ -24,7 +23,6 @@ const GuideList = (props) => {
         const page = queryString.parse(props.location.search).page || 1;
         let reqPostCount = response.headers['x-total-count'];
         let reqPageCount = 1 + Math.floor(reqPostCount / itemsPerPage);
-        setPostCount(reqPostCount);
         setPageCount(reqPageCount);
         setPosts(response.data);
         if (page > reqPageCount && currentPage === 0) {
