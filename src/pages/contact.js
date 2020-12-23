@@ -7,9 +7,9 @@ const Contact = () => {
     <PageTemplate title="Contact">
       <Header
         title="Contact Us"
-        description= {[
-          "Do you want a new feature? Maybe you want to tell us about some bug...",
-          "Or maybe there is some accessibility issue? Anyway, contact us using the form bellow."
+        description={[
+          'Do you want a new feature? Maybe you want to tell us about some bug...',
+          'Or maybe there is some accessibility issue? Anyway, contact us using the form bellow.',
         ]}
       />
       <Form>
@@ -34,7 +34,7 @@ const Contact = () => {
         <div>
           <label>
             Message
-            <textarea/>
+            <textarea />
           </label>
         </div>
         <div>
@@ -44,24 +44,7 @@ const Contact = () => {
     </PageTemplate>
   );
 };
-const BlockHeading = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 1200px;
-  height: 30vh;
-  h2 {
-    font-size: 2rem;
-    padding: 10px;
-    color: #333;
-  }
-  p {
-    font-size: 1rem;
-    padding: 10px;
-  }
-`;
+
 const Form = styled.form`
   border-top: 2px solid #5ea4f3;
   background-color: #fff;
