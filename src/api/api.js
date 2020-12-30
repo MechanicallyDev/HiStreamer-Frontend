@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://127.0.0.1:3333';
-//'https://histreamer.com/';
+const baseURL = 'https://histreamer.com/'; //'http://127.0.0.1:3333';
 
 const api = axios.create({ baseURL: `${baseURL}/api/` });
 
