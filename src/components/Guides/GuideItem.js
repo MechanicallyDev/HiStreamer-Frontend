@@ -1,18 +1,6 @@
 import styled from 'styled-components';
 
-function formatDate(date) {
-  const datearray = date.substring(0, 10).split('-');
-  return `${datearray[1]}/${datearray[2]}/${datearray[0]}`;
-}
-
-export default function GuideItemInfo({
-  image,
-  title,
-  date,
-  author,
-  summary,
-  slug,
-}) {
+export default function GuideItemInfo({ image, title, summary, slug }) {
   return (
     <GuideItem>
       <div>
@@ -22,9 +10,6 @@ export default function GuideItemInfo({
       <div>
         <header>
           <h3>{title}</h3>
-          <span>
-            Sent by {author} in {formatDate(date)}
-          </span>
           <p>{summary}</p>
         </header>
         <a href={`/guide/${slug}`}>Continue reading...</a>

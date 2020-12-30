@@ -67,11 +67,9 @@ const GuideList = (props) => {
         {posts.length === 0 && <h4>Loading...</h4>}
         {posts.map((post) => (
           <GuideItem
-            key={post.id}
+            key={post.title}
             image={post.image}
             title={post.title}
-            date={post.created_at}
-            author={post.name}
             summary={post.description}
             slug={post.slug}
           />

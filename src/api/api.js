@@ -1,7 +1,12 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL: 'https://histreamer.com/api/' });
-api.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
-api.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+const baseURL = 'http://127.0.0.1:3333';
+//'https://histreamer.com/';
+
+const api = axios.create({ baseURL: `${baseURL}/api/` });
 
 export default api;
+
+const files = axios.create({ baseURL: `${baseURL}/files/` });
+
+export { files };

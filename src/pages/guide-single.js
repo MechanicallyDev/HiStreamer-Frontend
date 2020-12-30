@@ -1,68 +1,141 @@
 import PageTemplate from 'layouts/PageTemplate';
+import api, { files } from 'api/api';
+import React from 'react';
 import styled from 'styled-components';
+import Markdown from 'markdown-to-jsx';
 import { useParams } from 'react-router-dom';
 
-const GuideSingle = ({ title }) => {
+const H3 = styled.h3``;
+const H4 = styled.h4``;
+const H5 = styled.h5``;
+const markdownOptions = {
+  overrides: {
+    h1: { component: H3 },
+    h2: { component: H4 },
+    h3: { component: H5 },
+  },
+};
+
+const GuideSingle = () => {
   let { slug } = useParams();
+  const [title, setTitle] = React.useState('');
+  const [image, setImage] = React.useState('');
+  const [author, setAuthor] = React.useState('');
+  const [creationDate, setCreationDate] = React.useState({
+    day: '00',
+    month: '00',
+    year: '0000',
+  });
+  const [updateDate, setUpdateDate] = React.useState({
+    day: '00',
+    month: '00',
+    year: '0000',
+  });
+  const [postMD, setPostMD] = React.useState('');
+
+  React.useEffect(() => {
+    api.get(`post/${slug}`).then(({ data }) => {
+      const { post, author } = data;
+
+      setTitle(post.title);
+      setImage(post.image);
+      setAuthor(author.name);
+      const reqCreationDate = post.created_at.substring(0, 10).split('-');
+      setCreationDate({
+        day: reqCreationDate[2],
+        month: reqCreationDate[1],
+        year: reqCreationDate[0],
+      });
+      const reqUpdatedDate = post.updated_at.substring(0, 10).split('-');
+      setUpdateDate({
+        day: reqUpdatedDate[2],
+        month: reqUpdatedDate[1],
+        year: reqUpdatedDate[0],
+      });
+      document.title = `HiStreamer - ${title}`;
+      files.get(`/posts/${slug}/${slug}.md`).then((response) => {
+        setPostMD(response.data);
+      });
+    });
+  }, [slug, title]);
+
+  function areDatesEqual(date1, date2) {
+    return (
+      date1.day === date2.day &&
+      date1.month === date2.month &&
+      date1.year === date2.year
+    );
+  }
+
   return (
-    <PageTemplate title={slug}>
-      <Container>
-        <div
-          className="postImage"
-          style={{
-            backgroundImage:
-              'url("https://img.r7.com/images/bicho-preguica-caracteristicas-das-especies-e-curiosidades-07042020125814530?dimensions=660x360")',
-          }}
-        />
-        <PostBody>
-          <h2>Title</h2>
-          <div className="info">
-            <span>by Author</span>
-            <span>Date</span>
-          </div>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione
-            consequuntur, recusandae provident ducimus voluptas ut hic harum
-            assumenda debitis aliquam incidunt voluptatum quia ipsa,
-            exercitationem eaque architecto quidem veniam. Error! Ratione
-            incidunt aliquam quam blanditiis numquam obcaecati. Maiores
-            molestiae ratione, maxime nostrum expedita modi excepturi delectus
-            obcaecati architecto, deserunt velit minus natus. Tempore, sit
-            labore! Tenetur earum unde aliquid quisquam? Explicabo placeat
-            molestiae blanditiis rerum incidunt quibusdam ex optio quidem vitae
-            nulla. Tempora velit incidunt eum corporis voluptas. Repellendus
-            voluptate, architecto nam omnis illum temporibus ipsam natus
-            necessitatibus ipsum culpa. Facere eveniet nam laudantium
-            consequuntur eaque necessitatibus quidem, consequatur deserunt
-            tenetur inventore dolorem asperiores veniam quibusdam eos ratione
-            ipsam unde ad id aliquam in nulla ea cum ipsa. Sint, odit.
-            Voluptatum officiis dolorem nam, assumenda iusto atque accusamus,
-            quos eos et dolores praesentium iure natus in a hic! Earum accusamus
-            consequatur quisquam architecto. Quis odit atque inventore voluptas.
-            Fugit, vel! Iste id esse, impedit harum minima culpa possimus
-            aliquid aliquam dicta animi. Earum impedit quasi reprehenderit
-            officiis pariatur, quae adipisci magnam numquam nemo laboriosam
-            optio aliquid cupiditate, atque iste temporibus? Eos laboriosam
-            tempore blanditiis molestiae cupiditate. Temporibus impedit iste,
-            eligendi est praesentium corrupti quos accusantium dignissimos totam
-            fugit assumenda consectetur enim nostrum hic error velit. Quibusdam
-            quia error laudantium illum. Necessitatibus quod aut minus explicabo
-            ipsum alias quis sit commodi! Harum maiores fuga repellendus
-            nostrum, consequatur id, amet commodi architecto culpa assumenda sed
-            repudiandae, aspernatur laudantium iste provident dolores eligendi.
-            Doloremque maiores commodi non quos omnis accusamus eius quod, sequi
-            in alias. Quae labore velit esse, natus dicta nisi cum ipsa autem
-            nostrum distinctio, assumenda incidunt facilis dolores nesciunt
-            expedita! Beatae facilis modi consectetur nostrum harum rerum quas
-            tenetur commodi necessitatibus, obcaecati officia, ducimus illum
-            doloribus assumenda atque sequi eum consequuntur enim distinctio
-            culpa dolorem nobis? Reprehenderit saepe aut voluptate.
-          </p>
-        </PostBody>
-      </Container>
+    <PageTemplate title={title}>
+      {title !== 'Page not found' && (
+        <Container>
+          <div
+            className="postImage"
+            style={{
+              backgroundImage: `url(${image})`,
+            }}
+          />
+          <PostBody>
+            <h2>{title}</h2>
+            {creationDate.day !== '00' && (
+              <div className="info">
+                <span>by {author}</span>
+                <span>
+                  {areDatesEqual(creationDate, updateDate)
+                    ? `Posted on ${creationDate.month}/${creationDate.day}/${creationDate.year}`
+                    : `Last update on ${updateDate.month}/${updateDate.day}/${updateDate.year}`}
+                </span>
+              </div>
+            )}
+            <ContentBlock options={markdownOptions}>{postMD}</ContentBlock>
+          </PostBody>
+        </Container>
+      )}
+      {title === 'Page not found' && (
+        <Container>
+          <PostBody style={{ textAlign: 'center' }}>
+            <h2>{title}</h2>
+            <p>The page you're looking for doesn't exist or has been moved.</p>
+          </PostBody>
+        </Container>
+      )}
     </PageTemplate>
   );
 };
+
+const ContentBlock = styled(Markdown)`
+  h3 {
+    margin: 2rem 0 0.5rem 0;
+    font-size: 1.6rem;
+  }
+  h4 {
+    margin: 2rem 0 0.5rem 0;
+    font-size: 1.4rem;
+  }
+  h5 {
+    margin: 2rem 0 0.5rem 0;
+    font-size: 1.2rem;
+  }
+  summary {
+    margin: 2rem 0 0.5rem 0;
+    font-size: 1rem;
+  }
+  p,
+  a {
+    font-size: 1rem;
+  }
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.2s;
+    &:hover {
+      color: #243386;
+    }
+  }
+`;
 
 const Container = styled.section`
   width: 100%;
@@ -91,7 +164,7 @@ const PostBody = styled.div`
     font-size: 1.75rem;
   }
   .info {
-    padding: 20px 0;
+    padding: 0;
     display: block;
     span {
       display: inline-block;
