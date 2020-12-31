@@ -1,5 +1,5 @@
 import PageTemplate from 'layouts/PageTemplate';
-import api, { files } from 'api/api';
+import api from 'api/api';
 import React from 'react';
 import styled from 'styled-components';
 import Markdown from 'markdown-to-jsx';
@@ -53,9 +53,7 @@ const GuideSingle = () => {
         year: reqUpdatedDate[0],
       });
       document.title = `HiStreamer - ${title}`;
-      files.get(`/posts/${slug}/${slug}.md`).then((response) => {
-        setPostMD(response.data);
-      });
+      setPostMD(post.content);
     });
   }, [slug, title]);
 
