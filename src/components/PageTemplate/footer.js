@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export default function Footer() {
   return (
     <FooterStyled>
-      <div className="container">
+      {/* <div className="container">
         <div className="row">
           <div className="col">
             <h5>Get Started</h5>
@@ -64,7 +64,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="footer-copyright">
         <p>© 2020 HiStreamer</p>
       </div>
