@@ -6,7 +6,7 @@ import Footer from 'components/PageTemplate/footer';
 export default function PageTemplate(props) {
   React.useEffect(() => {
     document.title = `HiStreamer - ${props.title}`;
-  }, []);
+  }, [props.title]);
   return (
     <>
       <main>

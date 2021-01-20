@@ -7,7 +7,7 @@ export default function GuideItemInfo({ image, title, summary, slug }) {
         <img src={image} alt={title} />
       </div>
 
-      <div>
+      <div className="infobar">
         <header>
           <h3>{title}</h3>
           <p>{summary}</p>
@@ -20,7 +20,7 @@ export default function GuideItemInfo({ image, title, summary, slug }) {
 const GuideItem = styled.article`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   padding: 2rem 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.075);
@@ -74,6 +74,9 @@ const GuideItem = styled.article`
       }
     }
   }
+  .infobar {
+      min-width: 40%;
+    }
   @media screen and (max-width: 1000px) {
     display: flex;
     flex-direction: column;
