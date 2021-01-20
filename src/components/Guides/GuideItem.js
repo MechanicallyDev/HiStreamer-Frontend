@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export default function GuideItemInfo({ image, title, summary, slug }) {
+export default function GuideItemInfo({ image, title, summary, slug, tags }) {
   return (
     <GuideItem>
       <div>
@@ -11,6 +11,15 @@ export default function GuideItemInfo({ image, title, summary, slug }) {
         <header>
           <h3>{title}</h3>
           <p>{summary}</p>
+          <p>
+            Tags:
+            {tags
+              .trim()
+              .split(",")
+              .map((tag, index) => (
+                <span key={index}>{tag}</span>
+              ))}
+          </p>
         </header>
         <a href={`/guide/${slug}`}>Continue reading...</a>
       </div>
@@ -51,6 +60,13 @@ const GuideItem = styled.article`
       line-height: 1.5;
       width: 100%;
       max-width: 50ch;
+      span {
+        background-color: #00000022;
+        color: #000000bb;
+        border-radius: 0.25rem;
+        padding: 0.2rem 0.5rem;
+        margin: 0.2rem;
+      }
     }
     a {
       cursor: pointer;
@@ -75,8 +91,8 @@ const GuideItem = styled.article`
     }
   }
   .infobar {
-      min-width: 40%;
-    }
+    min-width: 40%;
+  }
   @media screen and (max-width: 1000px) {
     display: flex;
     flex-direction: column;

@@ -72,6 +72,7 @@ const GuideList = (props) => {
             title={post.title}
             summary={post.description}
             slug={post.slug}
+            tags={post.tags}
           />
         ))}
       </GuideListContainer>
