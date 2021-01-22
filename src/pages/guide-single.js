@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 const H3 = styled.h3``;
 const H4 = styled.h4``;
 const H5 = styled.h5``;
+
 const markdownOptions = {
   overrides: {
     h1: { component: H3 },
@@ -102,39 +103,6 @@ const GuideSingle = () => {
     </PageTemplate>
   );
 };
-
-const ContentBlock = styled(Markdown)`
-  h3 {
-    margin: 2rem 0 0.5rem 0;
-    font-size: 1.6rem;
-  }
-  h4 {
-    margin: 2rem 0 0.5rem 0;
-    font-size: 1.4rem;
-  }
-  h5 {
-    margin: 2rem 0 0.5rem 0;
-    font-size: 1.2rem;
-  }
-  summary {
-    margin: 2rem 0 0.5rem 0;
-    font-size: 1rem;
-  }
-  p,
-  a {
-    font-size: 1rem;
-  }
-  a {
-    cursor: pointer;
-    text-decoration: none;
-    color: #007bff;
-    transition: color 0.2s;
-    &:hover {
-      color: #243386;
-    }
-  }
-`;
-
 const Container = styled.section`
   width: 100%;
   margin-top: 6rem;
@@ -174,5 +142,39 @@ const PostBody = styled.div`
     }
   }
 `;
+const ContentBlock = styled(Markdown)`
+  h3, h4, h5 {
+    margin: 3rem 0 0.5rem 0;
+    font-size: 1.2rem;
+  }
+  p {
+    margin-bottom: .8rem;
+    font-size: 1rem;
+  }
+  a {
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.2s;
+    &:hover {
+      color: #243386;
+    }
+  }
+  ul {
+    margin: .5rem 0;
+    list-style: disc;
+    list-style-position: inside;
+  }
+  img {
+    display: block;
+    height: auto;
+    max-width: 90%;
+    border-radius: 2px;
+    margin: 2rem auto;
+  }
+`;
+
+
 
 export default GuideSingle;
