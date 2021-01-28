@@ -5,18 +5,21 @@ import api from 'api/api';
 import PageTemplate from 'layouts/PageTemplate';
 import Header from 'components/Header';
 import GuideItem from 'components/Guides/GuideItem';
-import IntText, {IntInText} from 'i18n/IntText';
+import IntText, {IntInText, GetLang} from 'i18n/IntText';
 
 const GuideList = (props) => {
+  const [language,  setLanguage] = React.useState(GetLang());
   const [currentPage, setCurrentPage] = React.useState(0);
   const [pageCount, setPageCount] = React.useState(1);
   const [posts, setPosts] = React.useState([]);
+
+  
 
   React.useEffect(() => {
     api
       .get('posts', {
         params: {
-          language: "pt-BR",
+          language: language,
           page: currentPage,
         },
       })
@@ -32,7 +35,7 @@ const GuideList = (props) => {
         }
         if (currentPage === 0) setCurrentPage(1);
       });
-  }, [currentPage, props.location.search]);
+  }, [currentPage, props.location.search, language]);
 
   function handleChangePage(dir) {
     if (dir === 'previous' && currentPage > 1) {

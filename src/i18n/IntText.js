@@ -10,4 +10,9 @@ export const IntInText = (text) => {
   return t(text);
 };
 
+export const GetLang = () => {
+  const { i18n } = useTranslation();
+  return i18n.language;
+};
+
 export default IntText;
