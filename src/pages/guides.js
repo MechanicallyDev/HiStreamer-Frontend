@@ -5,6 +5,7 @@ import api from 'api/api';
 import PageTemplate from 'layouts/PageTemplate';
 import Header from 'components/Header';
 import GuideItem from 'components/Guides/GuideItem';
+import IntText, {IntInText} from 'i18n/IntText';
 
 const GuideList = (props) => {
   const [currentPage, setCurrentPage] = React.useState(0);
@@ -15,6 +16,7 @@ const GuideList = (props) => {
     api
       .get('posts', {
         params: {
+          language: "pt-BR",
           page: currentPage,
         },
       })
@@ -42,11 +44,11 @@ const GuideList = (props) => {
   }
 
   return (
-    <PageTemplate title="Guides">
+    <PageTemplate title={IntInText("guides.title")}>
       <Header
-        title="Guides"
+        title={IntInText("guides.title")}
         description={[
-          'Check our guides and learn how to make your stream even better!',
+          `${IntInText("guides.description")}`,
         ]}
       />
       <PageNavigation currentPage={currentPage} maxPage={pageCount}>
@@ -55,7 +57,7 @@ const GuideList = (props) => {
           onClick={() => handleChangePage('previous')}
         >{`<`}</button>
         <button disabled>
-          Page {currentPage} / {pageCount}
+          {IntInText("guides.page")} {currentPage} / {pageCount}
         </button>
         <button
           className="next"
@@ -64,7 +66,7 @@ const GuideList = (props) => {
       </PageNavigation>
 
       <GuideListContainer>
-        {posts.length === 0 && <h4>Loading...</h4>}
+        {posts.length === 0 && <h4><IntText text="guides.loading"/></h4>}
         {posts.map((post) => (
           <GuideItem
             key={post.title}
@@ -82,7 +84,7 @@ const GuideList = (props) => {
           onClick={() => handleChangePage('previous')}
         >{`<`}</button>
         <button disabled>
-          Page {currentPage} / {pageCount}
+          {IntInText("guides.page")} {currentPage} / {pageCount}
         </button>
         <button
           className="next"

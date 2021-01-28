@@ -10,6 +10,12 @@ const text = {
     home: {
       message: "Olá Mundo!",
     },
+    guides: {
+      title: "Tutoriais",
+      description: "Veja nossos tutoriais e deixe seus vídeos ainda melhores!",
+      page: "Página",
+      loading: "Carregando...",
+    }
   },
 };
 

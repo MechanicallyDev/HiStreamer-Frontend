@@ -10,6 +10,12 @@ const text = {
     home: {
       message: "Hello World!",
     },
+    guides: {
+      title: "Guides",
+      description: "Check our guides and learn how to make your stream even better!",
+      page: "Page",
+      loading: "Loading...",
+    }
   },
 };
 
