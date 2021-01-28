@@ -21,7 +21,12 @@ const text = {
       loading: "Loading...",
       prefix: "guide",
       callToAction: "Continue reading",
-    }
+    },
+    footer: {
+      language: "Language",
+      languageEnglish: "English",
+      languagePortuguese: "Portuguese",
+    },
   },
 };
 

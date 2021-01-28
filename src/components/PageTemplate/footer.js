@@ -1,13 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import { IntInText } from  'i18n/IntText';
 
 export default function Footer() {
+  const { i18n } = useTranslation()
+
   return (
     <FooterStyled>
-      {/* <div className="container">
+      <div className="container">
         <div className="row">
           <div className="col">
+            <h5>{IntInText("footer.language")}</h5>
+            <ul>
+              <li>
+                <Link onClick={()=>i18n.changeLanguage("en-US")} to="#">{IntInText("footer.languageEnglish")}</Link>
+              </li>
+              <li>
+                <Link onClick={()=>i18n.changeLanguage("pt-BR")} to="#">{IntInText("footer.languagePortuguese")}</Link>
+              </li>
+            </ul>
+          </div>
+          {/*<div className="col">
             <h5>Get Started</h5>
             <ul>
               <li>
@@ -62,9 +77,9 @@ export default function Footer() {
                 <Link to="#">Privacy Policy</Link>
               </li>
             </ul>
-          </div>
+          </div>*/}
         </div>
-      </div> */}
+      </div> 
       <div className="footer-copyright">
         <p>© 2020 HiStreamer</p>
       </div>

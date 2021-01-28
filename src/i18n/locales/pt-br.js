@@ -21,7 +21,12 @@ const text = {
       loading: "Carregando...",
       prefix: "tutorial",
       callToAction: "Continue a ler",
-    }
+    },
+    footer: {
+      language: "Idioma",
+      languageEnglish: "Inglês",
+      languagePortuguese: "Português",
+    },
   },
 };
 
