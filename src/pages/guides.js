@@ -1,32 +1,38 @@
-import React from 'react';
-import styled from 'styled-components';
-import queryString from 'query-string';
-import api from 'api/api';
-import PageTemplate from 'layouts/PageTemplate';
-import Header from 'components/Header';
-import GuideItem from 'components/Guides/GuideItem';
-import IntText, {IntInText, GetLang} from 'i18n/IntText';
+import React from "react";
+import styled from "styled-components";
+import queryString from "query-string";
+import api from "api/api";
+import PageTemplate from "layouts/PageTemplate";
+import Header from "components/Header";
+import GuideItem from "components/Guides/GuideItem";
+import IntText, { IntInText, GetLang } from "i18n/IntText";
 
 const GuideList = (props) => {
-  const [language,  setLanguage] = React.useState(GetLang());
-  const [currentPage, setCurrentPage] = React.useState(0);
+  const [language, setLanguage] = React.useState(GetLang());
+  const [linkPrefix, setLinkPrefix] = React.useState(
+    IntInText("guides.prefix")
+  );
+  const [callToAction, setCallToAction] = React.useState(
+    IntInText("guides.callToAction")
+  );
+  const [currentPage, setCurrentPage] = React.useState(1);
   const [pageCount, setPageCount] = React.useState(1);
   const [posts, setPosts] = React.useState([]);
 
-  
-
   React.useEffect(() => {
+    let lang = "en-US";
+    if (language === "en-US" || language === "pt-BR") lang=language;
     api
-      .get('posts', {
+      .get("posts", {
         params: {
-          language: language,
+          language: lang,
           page: currentPage,
         },
       })
       .then((response) => {
         const itemsPerPage = 6;
         const page = queryString.parse(props.location.search).page || 1;
-        let reqPostCount = response.headers['x-total-count'];
+        let reqPostCount = response.headers["x-total-count"];
         let reqPageCount = 1 + Math.floor(reqPostCount / itemsPerPage);
         setPageCount(reqPageCount);
         setPosts(response.data);
@@ -38,10 +44,10 @@ const GuideList = (props) => {
   }, [currentPage, props.location.search, language]);
 
   function handleChangePage(dir) {
-    if (dir === 'previous' && currentPage > 1) {
+    if (dir === "previous" && currentPage > 1) {
       setCurrentPage(Number(currentPage) - 1);
     }
-    if (dir === 'next' && currentPage < pageCount) {
+    if (dir === "next" && currentPage < pageCount) {
       setCurrentPage(Number(currentPage) + 1);
     }
   }
@@ -50,31 +56,35 @@ const GuideList = (props) => {
     <PageTemplate title={IntInText("guides.title")}>
       <Header
         title={IntInText("guides.title")}
-        description={[
-          `${IntInText("guides.description")}`,
-        ]}
+        description={[`${IntInText("guides.description")}`]}
       />
       <PageNavigation currentPage={currentPage} maxPage={pageCount}>
         <button
           className="previous"
-          onClick={() => handleChangePage('previous')}
+          onClick={() => handleChangePage("previous")}
         >{`<`}</button>
         <button disabled>
           {IntInText("guides.page")} {currentPage} / {pageCount}
         </button>
         <button
           className="next"
-          onClick={() => handleChangePage('next')}
+          onClick={() => handleChangePage("next")}
         >{`>`}</button>
       </PageNavigation>
 
       <GuideListContainer>
-        {posts.length === 0 && <h4><IntText text="guides.loading"/></h4>}
+        {posts.length === 0 && (
+          <h4>
+            <IntText text="guides.loading" />
+          </h4>
+        )}
         {posts.map((post) => (
           <GuideItem
             key={post.title}
             image={post.image}
             title={post.title}
+            prefix={linkPrefix}
+            callToAction={callToAction}
             summary={post.description}
             slug={post.slug}
             tags={post.tags}
@@ -84,14 +94,14 @@ const GuideList = (props) => {
       <PageNavigation currentPage={currentPage} maxPage={pageCount}>
         <button
           className="previous"
-          onClick={() => handleChangePage('previous')}
+          onClick={() => handleChangePage("previous")}
         >{`<`}</button>
         <button disabled>
           {IntInText("guides.page")} {currentPage} / {pageCount}
         </button>
         <button
           className="next"
-          onClick={() => handleChangePage('next')}
+          onClick={() => handleChangePage("next")}
         >{`>`}</button>
       </PageNavigation>
       <Spacer />
@@ -125,7 +135,7 @@ const PageNavigation = styled.aside`
       background: #0050ff;
       ${(props) => {
         if (props.currentPage === 1)
-          return 'color:transparent;  background: #007bff; cursor: default;';
+          return "color:transparent;  background: #007bff; cursor: default;";
       }}
     }
     &.next {
@@ -135,7 +145,7 @@ const PageNavigation = styled.aside`
       background: #0050ff;
       ${(props) => {
         if (props.currentPage === props.maxPage)
-          return 'color:transparent; background: #007bff; cursor: default;';
+          return "color:transparent; background: #007bff; cursor: default;";
       }}
     }
   }

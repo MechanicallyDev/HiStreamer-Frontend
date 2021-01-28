@@ -3,9 +3,13 @@ const text = {
     menu: {
       home: "Inicial",
       guides: "Tutoriais",
+      guidesLink: "/tutoriais",
       tools: "Ferramentas",
+      toolsLink: "/ferramentas",
       about: "Sobre",
-      contact: "Contato"
+      aboutLink: "/sobre",
+      contact: "Contato",
+      contactLink: "/contato",
     },
     home: {
       message: "Olá Mundo!",
@@ -15,6 +19,8 @@ const text = {
       description: "Veja nossos tutoriais e deixe seus vídeos ainda melhores!",
       page: "Página",
       loading: "Carregando...",
+      prefix: "tutorial",
+      callToAction: "Continue a ler",
     }
   },
 };

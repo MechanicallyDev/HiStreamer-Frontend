@@ -1,15 +1,29 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
-export default function GuideItemInfo({ image, title, summary, slug, tags }) {
+export default function GuideItemInfo({
+  image,
+  title,
+  summary,
+  slug,
+  tags,
+  prefix,
+  callToAction,
+}) {
+  const guideLink = `/${prefix}/${slug}`;
   return (
     <GuideItem>
       <div>
-        <img src={image} alt={title} />
+        <Link to={guideLink}>
+          <img src={image} alt={title} />
+        </Link>
       </div>
 
       <div className="infobar">
         <header>
-          <h3>{title}</h3>
+          <Link to={guideLink}>
+            <h3>{title}</h3>
+          </Link>
           <p>{summary}</p>
           <p>
             Tags:
@@ -21,7 +35,7 @@ export default function GuideItemInfo({ image, title, summary, slug, tags }) {
               ))}
           </p>
         </header>
-        <a href={`/guide/${slug}`}>Continue reading...</a>
+        <Link className="CallToAction" to={guideLink}>{callToAction}...</Link>
       </div>
     </GuideItem>
   );
@@ -71,6 +85,9 @@ const GuideItem = styled.article`
     a {
       cursor: pointer;
       text-decoration: none;
+    }
+    a.CallToAction {
+      
       padding: 0.5rem 1rem;
       font-size: 0.875rem;
       line-height: 1.5;

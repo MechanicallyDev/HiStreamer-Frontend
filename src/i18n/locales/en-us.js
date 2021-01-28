@@ -3,9 +3,13 @@ const text = {
     menu: {
       home: "Home",
       guides: "Guides",
+      guidesLink: "/guides",
       tools: "Tools",
+      toolsLink: "/tools",
       about: "About",
-      contact: "Contact"
+      aboutLink: "/about",
+      contact: "Contact",
+      contactLink: "/contact",
     },
     home: {
       message: "Hello World!",
@@ -15,6 +19,8 @@ const text = {
       description: "Check our guides and learn how to make your stream even better!",
       page: "Page",
       loading: "Loading...",
+      prefix: "guide",
+      callToAction: "Continue reading",
     }
   },
 };

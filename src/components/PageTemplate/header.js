@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PositionStore from 'hooks/positionStore';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
-import IntText from 'i18n/IntText';
+import IntText, {IntInText} from 'i18n/IntText';
 
 import LogoImage from '../../resources/images/hiStreamer384.png';
 
@@ -37,16 +37,16 @@ export default function Header() {
               <Link to="/"><IntText text="menu.home">Home</IntText></Link>
             </li>
             <li>
-              <Link to="/guides"><IntText text="menu.guides">Guides</IntText></Link>
+              <Link to={IntInText("menu.guidesLink")}><IntText text="menu.guides">Guides</IntText></Link>
             </li>
             <li>
-              <Link to="/tools"><IntText text="menu.tools">Tools</IntText></Link>
+              <Link to={IntInText("menu.toolsLink")}><IntText text="menu.tools">Tools</IntText></Link>
             </li>
             <li>
-              <Link to="/about"><IntText text="menu.about">About</IntText></Link>
+              <Link to={IntInText("menu.aboutLink")}><IntText text="menu.about">About</IntText></Link>
             </li>
             <li>
-              <Link to="/contact"><IntText text="menu.contact">Contact</IntText></Link>
+              <Link to={IntInText("menu.contactLink")}><IntText text="menu.contact">Contact</IntText></Link>
             </li>
           </ul>
         </MenuListContainer>
