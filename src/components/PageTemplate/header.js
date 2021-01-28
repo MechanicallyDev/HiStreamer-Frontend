@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PositionStore from 'hooks/positionStore';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
+import IntText from 'i18n/IntText';
 
 import LogoImage from '../../resources/images/hiStreamer384.png';
 
@@ -33,19 +34,19 @@ export default function Header() {
         <MenuListContainer>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/"><IntText text="menu.home">Home</IntText></Link>
             </li>
             <li>
-              <Link to="/guides">Guides</Link>
+              <Link to="/guides"><IntText text="menu.guides">Guides</IntText></Link>
             </li>
             <li>
-              <Link to="/tools">Tools</Link>
+              <Link to="/tools"><IntText text="menu.tools">Tools</IntText></Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/about"><IntText text="menu.about">About</IntText></Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link to="/contact"><IntText text="menu.contact">Contact</IntText></Link>
             </li>
           </ul>
         </MenuListContainer>
