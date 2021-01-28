@@ -2,6 +2,7 @@ import React from "react";
 import PageTemplate from "layouts/PageTemplate";
 import styled from "styled-components";
 import Header from "components/Header";
+import IntText, { IntInText } from "i18n/IntText";
 
 const Contact = () => {
   const [hasSent, setHasSent] = React.useState(false);
@@ -49,78 +50,88 @@ const Contact = () => {
   async function handleFormSubmition(e) {
     e.preventDefault();
     if (validateForm()) return;
-    setErrors([])
+    setErrors([]);
     setHasSent(true);
   }
 
   return (
-    <PageTemplate title="Contact">
+    <PageTemplate title={IntInText("contact.title")}>
       <Header
-        title="Contact Us"
+        title={IntInText("contact.title")}
         description={[
-          "Do you want a new feature? Maybe you want to tell us about some bug...",
-          "Or maybe there is some accessibility issue? Anyway, contact us using the form bellow.",
+          IntInText("contact.descriptionLine1"),
+          IntInText("contact.descriptionLine2"),
         ]}
       />
 
       <Form hasError={hasError}>
         {hasSent && (
           <div>
-            <h4>Thank you for your contact!</h4>
-            <p>We will answer as soon as we can!</p>
+            <h4>{IntInText("contact.sentResponseTitle")}</h4>
+            <p>{IntInText("contact.sentResponseLine")}</p>
           </div>
         )}
         <div>
           <label>
-            Name
+            {IntInText("contact.formInputName")}
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               disabled={hasSent}
             />
-            {errors.includes('name') && <span>Please answer the name</span>}
+            {errors.includes("name") && (
+              <span><IntText text="contact.formErrorName"/></span>
+            )}
           </label>
         </div>
         <div>
           <label>
-            Subject
+            {IntInText("contact.formInputSubject")}
             <input
               type="text"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               disabled={hasSent}
             />
-            {errors.includes('subject') && <span>Please answer the subject</span>}
+            {errors.includes("subject") && (
+              <span><IntText text="contact.formErrorSubject"/></span>
+            )}
           </label>
         </div>
         <div>
           <label>
-            E-mail
+            {IntInText("contact.formInputEmail")}
             <input
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={hasSent}
             />
-            {errors.includes('email') && <span>Please answer a valid e-mail</span>}
+            {errors.includes("email") && (
+              <span><IntText text="contact.formErrorEmail"/></span>
+            )}
           </label>
         </div>
         <div>
           <label>
-            Message
+            {IntInText("contact.formInputMessage")}
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               disabled={hasSent}
             />
-            {errors.includes('message') && <span>The message is too short</span>}
+            {errors.includes("message") && (
+              <span><IntText text="contact.formErrorMessage"/></span>
+            )}
           </label>
         </div>
         {!hasSent && (
           <div>
             <button onClick={(e) => handleFormSubmition(e)}>
-              {hasError ? `Please fix the errors before submitting` : `Send`}
+              {hasError
+                ? `${IntInText("contact.formError")}`
+                : `${IntInText("contact.formSend")}`}
             </button>
           </div>
         )}
@@ -157,7 +168,7 @@ const Form = styled.form`
       margin-bottom: 0.5rem;
       span {
         color: red;
-        font-size: .8rem;
+        font-size: 0.8rem;
       }
     }
     input,
